@@ -1,1 +1,0 @@
-# Katerina_Mozheyko_AT_G3_maven_at_project
