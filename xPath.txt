@@ -1,0 +1,73 @@
+spartak.by
+
+//img[@title='Спартак']
+//a/img[1]
+
+//a[@href='/partners/']
+//ul[2]/li[3]/a
+
+//img[@src='/include/eye.svg']
+
+//a[@href='/cn/']
+
+//child::footer
+//html/body/footer
+
+//h1['О компании']
+//h1
+
+//footer/div/div/div[2]/ul/li[2]/a/img
+//img[@src='/bitrix/templates/our_shop/images/VK.svg']
+
+//img[@src='/bitrix/templates/our_shop/images/youtube.svg']
+
+
+mail.ru
+
+мой мир
+//main/div/div/div/div/div/a[3]
+//div/a[3]
+
+все проекты
+//div[@class='ph-project ph-project_all-projects svelte-11bbdzz']
+//main/div/div/div/div/div/div
+
+регистрация
+//a[contains(., "Регистрация")]
+//div[2]/a
+
+картинки
+//main/div[2]/div[2]/div/div/div/a[3]
+//a[@data-name='pictures']
+
+кнопка поиска
+//form/label[@for='q']
+//form/label[1]
+
+леди
+//a[@href='//lady.mail.ru/']
+//div/a[4][@href='//lady.mail.ru/']
+
+вторая новость
+//ul/li[3]/div/a[@class='news-visited svelte-1kcqj27']
+
+значок рублей
+//i[@class='rate__icon rate__icon_rub svelte-y8evqr']
+//a/i[@role='img']
+
+кнопка найти
+//form/button[@id='search:submit']
+//button[contains(.,"Найти")]
+
+mail.ru
+//select[@name='domain']
+//form/div/div/select
+
+создать почту
+//a[contains(.,"Создать почту")]
+
+Не нашла:
+реклама
+одноклассники
+
+//div[@class='bui-price-display__value prco-inline-block-maker-helper ']
