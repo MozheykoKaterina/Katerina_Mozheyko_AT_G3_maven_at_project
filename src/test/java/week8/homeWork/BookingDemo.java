@@ -1,4 +1,4 @@
-package week8.classWork;
+package week8.homeWork;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -24,19 +24,20 @@ import static org.junit.Assert.assertEquals;
 public class BookingDemo {
 
     WebDriver driver;
+
     @Before
     public void doBefore() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
     @Test
-            public void checkBooking() {
+    public void checkBooking() {
         driver.get("https://booking.com");
 
         WebElement directionSearch = driver.findElement(By.xpath("//input[@aria-label='Пожалуйста, введите направление.']"));
-        directionSearch.sendKeys(new CharSequence[]{"Париж"});
+        directionSearch.sendKeys("Париж");
         directionSearch.click();
 
         WebElement directionSearchSubmit = driver.findElement(By.xpath("//ul[@aria-label='Список рекомендуемых направлений']"));
@@ -55,7 +56,6 @@ public class BookingDemo {
         WebElement calendar = driver.findElement(By.xpath("//span[@class='sb-date-field__icon sb-date-field__icon-btn bk-svg-wrapper calendar-restructure-sb']"));
         calendar.click();
 
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
@@ -66,8 +66,6 @@ public class BookingDemo {
         String fromdate = dateFormat.format(date1);
         Date date2 = cal2.getTime();
         String todate = dateFormat.format(date2);
-
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         WebElement fromDate = driver.findElement(By.xpath(String.format("//td[@data-date='%s']", fromdate)));
         fromDate.click();
@@ -105,8 +103,9 @@ public class BookingDemo {
         System.out.println("Actual price " + actualPrice / 7);
         Assert.assertTrue(actualPrice >= expectedMaxPrice);
     }
-        @After
-                public void after() {
+
+    @After
+    public void after() {
         driver.close();
         driver.quit();
     }

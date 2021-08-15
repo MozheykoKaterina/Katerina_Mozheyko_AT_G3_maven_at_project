@@ -17,12 +17,12 @@ public class Booking {
     @Before
     public void doBefore() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
     @Test
-    public void chekBooking() {
+    public void checkBooking() {
         driver.get("https://www.booking.com");
         WebElement directionSearch = driver.findElement(By.xpath("//input[@aria-label='Пожалуйста, введите направление.']"));
         directionSearch.sendKeys("Москва");
@@ -37,7 +37,7 @@ public class Booking {
         String color = hotel.getCssValue("color");
         String hexColor = Color.fromString(color).asHex();
         System.out.println(hexColor);
-        Assert.assertEquals("111", "#ff0000", hexColor);
+        Assert.assertEquals("Color", "#ff0000", hexColor);
     }
 
     @After
