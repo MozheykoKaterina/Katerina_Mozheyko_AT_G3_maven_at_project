@@ -18,15 +18,13 @@ import java.util.concurrent.TimeUnit;
 public class W3schools {
 
     WebDriver driver;
-    Actions make;
     Wait<WebDriver> wait;
 
     @Before
     public void doBefore() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        make = new Actions(driver);
         wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofSeconds(5))
@@ -35,17 +33,19 @@ public class W3schools {
 
     @Test
     public void checkW3schools() {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
         driver.get("https://www.w3schools.com/java/");
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         WebElement tutorial = wait.until(x -> x.findElement(By.xpath("//span[contains(.,'Tutorial')]")));
-        make.doubleClick(tutorial).sendKeys(Keys.chord(Keys.CONTROL,"c")).build().perform();
         System.out.println(tutorial.getText());
+        Actions make = new Actions(driver);
+        make.doubleClick(tutorial);
+        make.keyDown(Keys.CONTROL + "c").keyUp(Keys.CONTROL + "c").perform();
         driver.get("https://www.google.com");
         WebElement search = driver.findElement(By.xpath("//input[@title='Поиск']"));
         search.click();
-        make.sendKeys(Keys.chord(Keys.CONTROL,"v")).sendKeys(Keys.ENTER).build().perform();
+        make.keyDown(Keys.CONTROL + "v").keyUp(Keys.CONTROL + "v").keyDown(Keys.ENTER).keyUp(Keys.ENTER).perform();
+        WebElement getValue = driver.findElement(By.xpath("gLFyf gsfi"));
+        System.out.println(getValue.getText());
     }
 
     @After
