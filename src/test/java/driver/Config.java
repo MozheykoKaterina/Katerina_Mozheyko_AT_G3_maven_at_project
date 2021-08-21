@@ -1,5 +1,6 @@
-package week9;
+package driver;
 
 public enum Config {
     CHROME, FIREFOX, EDGE
 }
+
