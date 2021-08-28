@@ -11,13 +11,13 @@ import java.util.concurrent.TimeUnit;
 public class Driver {
 
     private static WebDriver driver;
+    ChromeOptions options = new ChromeOptions();
 
     public static WebDriver getWebDriver() {
         if (driver == null) {
             driver = DriverManager.getDriver(Config.CHROME);
             driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
             driver.manage().window().maximize();
-
         }
         return driver;
     }
@@ -39,5 +39,4 @@ public class Driver {
         driver.quit();
         driver = null;
     }
-    
 }

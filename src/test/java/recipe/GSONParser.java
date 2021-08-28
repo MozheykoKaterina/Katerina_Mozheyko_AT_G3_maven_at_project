@@ -1,13 +1,10 @@
-package week10.day20;
+package recipe;
 
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.stream.JsonReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class GSONParser {
     

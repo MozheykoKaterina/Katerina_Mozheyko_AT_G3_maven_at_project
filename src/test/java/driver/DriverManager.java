@@ -7,18 +7,24 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
     
+    
 
     public static WebDriver getDriver(Config config)  {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--incognito");
+        options.addArguments("--disable-site-security");
         return switch (config) {
             case FIREFOX -> new FirefoxDriver();
             case EDGE -> new EdgeDriver();
             case REMOTE -> getRemoteDriver();
-            default -> new ChromeDriver();
+            default -> new ChromeDriver(options);
         };
     }
     

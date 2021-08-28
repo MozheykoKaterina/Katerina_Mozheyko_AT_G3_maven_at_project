@@ -1,6 +1,4 @@
-package week10.day20;
-
-
+package remote;
 
 import gherkin.deps.com.google.gson.Gson;
 import org.apache.http.HttpResponse;
@@ -12,7 +10,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.URISyntaxException;
-
 
 public class HttpPostMy {
     

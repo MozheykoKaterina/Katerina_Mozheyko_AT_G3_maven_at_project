@@ -1,4 +1,4 @@
-package week10;
+package settings;
 
 import java.io.FileInputStream;
 import java.io.IOException;

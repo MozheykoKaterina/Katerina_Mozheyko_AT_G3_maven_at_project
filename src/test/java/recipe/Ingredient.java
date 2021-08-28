@@ -1,4 +1,4 @@
-package week10.day20;
+package recipe;
 
 public class Ingredient {
     
