@@ -1,4 +1,4 @@
-package week10.day20;
+package recipe;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

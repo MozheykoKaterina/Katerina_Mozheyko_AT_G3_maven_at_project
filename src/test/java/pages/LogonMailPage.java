@@ -1,19 +1,17 @@
 package pages;
 
 import driver.Driver;
-import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class LogonPage {
+public class LogonMailPage {
     
     WebDriver driver = Driver.getWebDriver();
     static String login;
     
-    //@BeforeClass
     public void logon() {
         driver.get("https://trashmail.com/");
         driver.findElement(By.xpath("//button[contains(.,'Choose among the following')]")).click();
@@ -33,6 +31,7 @@ public class LogonPage {
         driver.findElement(By.xpath("//button[@id='fe-submit']")).click();
         WebElement logon = driver.findElement(By.xpath("//input[@id='fe-dea']"));
         login = logon.getAttribute("value");
+        System.out.println(login);
     }
     
     public String getLogin() {

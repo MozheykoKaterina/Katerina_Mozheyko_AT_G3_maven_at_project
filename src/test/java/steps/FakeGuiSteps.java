@@ -1,4 +1,4 @@
-package week10.day19.fake;
+package steps;
 
 import driver.Driver;
 import io.cucumber.java.en.Given;

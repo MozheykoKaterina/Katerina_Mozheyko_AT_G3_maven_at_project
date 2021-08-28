@@ -1,4 +1,6 @@
-package week10.day20;
+package recipe;
+
+import recipe.Ingredient;
 
 import java.util.List;
 

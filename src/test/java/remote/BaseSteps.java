@@ -1,4 +1,4 @@
-package week10.day20;
+package remote;
 
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.stream.JsonReader;
@@ -12,8 +12,6 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-
-
 public class BaseSteps {
     
     public static final RequestSpecification REQUEST_SPECIFICATION = new RequestSpecBuilder()
@@ -22,7 +20,6 @@ public class BaseSteps {
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
-            
     
     private static final String JSON = "src/test/resources/users.json";
     
@@ -33,11 +30,26 @@ public class BaseSteps {
         return data.data.stream().filter(x -> x.username.equals(name)).findAny().get();
     }
     
+    private static User getUserRealName(String name) throws FileNotFoundException {
+        Gson gson = new Gson();
+        Data data = gson.fromJson(new JsonReader(new FileReader(JSON)), Data.class);
+        data.data.stream().filter(x -> x.realname.contains("Berta")).forEach(System.out::println);
+        return data.data.stream().filter(x -> x.realname.contains(name)).findAny().get();
+    }
     
     @Test
     public void testMethod() throws FileNotFoundException {
         String name = "a";
-        RestAssured
+        System.out.println("set: " + RestAssured
+                .given()
+                .spec(BaseSteps.REQUEST_SPECIFICATION)
+                .body(new Search(name, true))
+                .when()
+                .post()
+                .then()
+                .extract().body().as(Data.class));
+        
+                RestAssured
                 .given()
                 .spec(BaseSteps.REQUEST_SPECIFICATION)
                 .body(new Search(name, true))
@@ -45,5 +57,27 @@ public class BaseSteps {
                 .post()
                 .then()
                 .extract().body().as(Data.class).equals(BaseSteps.getUser(name));
+    }
+    
+    @Test
+    public void testMethodUserName() throws FileNotFoundException {
+        String name = "Berta";
+        System.out.println("set: " + RestAssured
+                .given()
+                .spec(BaseSteps.REQUEST_SPECIFICATION)
+                .body(new Search(name, true))
+                .when()
+                .post()
+                .then()
+                .extract().body().as(Data.class));
+        
+        RestAssured
+                .given()
+                .spec(BaseSteps.REQUEST_SPECIFICATION)
+                .body(new Search(name, true))
+                .when()
+                .post()
+                .then()
+                .extract().body().as(Data.class).equals(BaseSteps.getUserRealName(name));
     }
 }

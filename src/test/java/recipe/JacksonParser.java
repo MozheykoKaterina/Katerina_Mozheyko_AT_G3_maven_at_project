@@ -1,4 +1,4 @@
-package week10.day20;
+package recipe;
 
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
 
