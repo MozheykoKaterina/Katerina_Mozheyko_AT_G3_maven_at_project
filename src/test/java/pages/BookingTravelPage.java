@@ -10,20 +10,25 @@ public class BookingTravelPage {
     
     WebDriver driver = Driver.getWebDriver();
     
-    public void travel(String city) {
-        WebElement element = driver.findElement(By.xpath("//input[@aria-label='Пожалуйста, введите направление.']"));
+    private static final String DIRECTION_XPATH = "//input[@aria-label='Пожалуйста, введите направление.']";
+    private static final String CALENDAR_XPATH = "//span[@class='sb-date-field__icon sb-date-field__icon-btn bk-svg-wrapper calendar-restructure-sb']";
+    private static final String DATE_FROM_XPATH = "//td[@data-date='%s']";
+    private static final String DATE_TO_XPATH = "//td[@data-date='%s']";
+    private static final String BUTTON_SEARCH_XPATH = "//button[@class='sb-searchbox__button ']";
+    
+    public void directionOfTravel(String direction) {
+        WebElement element = driver.findElement(By.xpath(DIRECTION_XPATH));
         element.click();
-        element.sendKeys(city);
+        element.sendKeys(direction);
     }
     
-    public void calendar(int dateFrom, int dateTo ) {
-        WebElement cal = driver.findElement(By.xpath("//span[@class='sb-date-field__icon sb-date-field__icon-btn bk-svg-wrapper calendar-restructure-sb']"));
-        cal.click();
-        driver.findElement(By.xpath(String.format("//td[@data-date='%s']", Calendar.inputDate(dateFrom)))).click();
-        driver.findElement(By.xpath(String.format("//td[@data-date='%s']", Calendar.inputDate(dateTo)))).click();
+    public void setDateFromTo(int dateFrom, int dateTo ) {
+        driver.findElement(By.xpath(CALENDAR_XPATH)).click();
+        driver.findElement(By.xpath(String.format(DATE_FROM_XPATH, Calendar.inputDate(dateFrom)))).click();
+        driver.findElement(By.xpath(String.format(DATE_TO_XPATH, Calendar.inputDate(dateTo)))).click();
     }
     
     public void search() {
-        driver.findElement(By.xpath("//button[@class='sb-searchbox__button ']")).click();
+        driver.findElement(By.xpath(BUTTON_SEARCH_XPATH)).click();
     }
 }
