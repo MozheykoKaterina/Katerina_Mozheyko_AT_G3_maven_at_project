@@ -1,4 +1,4 @@
-package pages;
+package pages1;
 
 import driver.Driver;
 import org.openqa.selenium.By;
@@ -14,6 +14,5 @@ public class BookingJSPage {
         WebElement argument = driver.findElement(By.xpath(element));
         ((JavascriptExecutor) driver).executeScript(arguments, argument);
     }
-    
     
 }

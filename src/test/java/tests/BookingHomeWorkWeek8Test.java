@@ -4,6 +4,10 @@ import driver.Driver;
 import org.junit.*;
 import org.testng.annotations.AfterTest;
 import pages.*;
+import pages1.BookingFilterPage;
+import pages1.BookingGetPage;
+import pages1.BookingJSPage;
+import pages1.BookingOpenPage;
 
 public class BookingHomeWorkWeek8Test {
     
@@ -16,7 +20,7 @@ public class BookingHomeWorkWeek8Test {
     @Test
     public void checkBookingScrolling() {
         bookingOpenPage.openBooking();
-        bookingTravelPage.travel("Москва");
+        bookingTravelPage.directionOfTravel("Москва");
         bookingTravelPage.search();
         bookingJSPage.javascriptExecutor("//div[@id='hotellist_inner']/div[10]", "arguments[0].scrollIntoView(true)");
         bookingJSPage.javascriptExecutor("//div[@id='hotellist_inner']/div[10]", "arguments[0].style.backgroundColor = 'green'");
@@ -47,8 +51,8 @@ public class BookingHomeWorkWeek8Test {
     @Test
     public void findBookingVariable() {
         bookingOpenPage.openBooking();
-        bookingTravelPage.travel("Москва");
-        bookingTravelPage.calendar(1, 4);
+        bookingTravelPage.directionOfTravel("Москва");
+        bookingTravelPage.setDateFromTo(1, 4);
         bookingTravelPage.search();
         int countVariable = bookingGetPage.getTextInteger("//h1[contains(.,'Москва')]");
         System.out.println("На выбранные даты найдено " + countVariable);
@@ -58,7 +62,7 @@ public class BookingHomeWorkWeek8Test {
     @Test
     public void checkBookingRating() {
         bookingOpenPage.openBooking();
-        bookingTravelPage.travel("Москва");
+        bookingTravelPage.directionOfTravel("Москва");
         bookingTravelPage.search();
         bookingFilterPage.filterBooking();
         int countRating = bookingGetPage.getTextInteger("//div[@id='hotellist_inner']//div[@class='bui-review-score__badge']");

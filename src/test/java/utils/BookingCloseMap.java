@@ -1,4 +1,4 @@
-package pages;
+package utils;
 
 import driver.Driver;
 import org.openqa.selenium.By;
@@ -15,7 +15,7 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-public class BookingCloseMapPage {
+public class BookingCloseMap {
     
     WebDriver driver = Driver.getWebDriver();
 
