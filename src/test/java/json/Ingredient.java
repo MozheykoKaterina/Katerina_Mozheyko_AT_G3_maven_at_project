@@ -1,4 +1,4 @@
-package recipe;
+package json;
 
 public class Ingredient {
     

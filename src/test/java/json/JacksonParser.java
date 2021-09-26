@@ -1,4 +1,4 @@
-package recipe;
+package json;
 
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
 
