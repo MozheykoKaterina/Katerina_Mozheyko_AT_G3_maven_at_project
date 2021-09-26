@@ -1,4 +1,4 @@
-package week8;
+package xPath;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
