@@ -1,19 +1,19 @@
 package pages;
 
 import driver.Driver;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import settings.L4JLogging;
 
 public class BookingRegisterPage {
     
-    WebDriver driver = Driver.getWebDriver();
+    private WebDriver driver = Driver.getWebDriver();
     private static final Logger LOGGER =
-            Logger.getLogger(L4JLogging.class.getName());
+            LogManager.getLogger(BookingRegisterPage.class.getName());
     
     private static final String BUTTON_REGISTER_XPATH = "//span[contains(.,'Зарегистрироваться')]";
     private static final String BUTTON_LOGIN_XPATH = "//span[contains(.,'Войти в аккаунт')]";
@@ -30,16 +30,10 @@ public class BookingRegisterPage {
     public void register(String user, String password) {
         driver.get("https://booking.com");
         driver.findElement(By.xpath(BUTTON_REGISTER_XPATH)).click();
-        WebElement email = driver.findElement(By.xpath(ENTER_MAIL_XPATH));
-        email.click();
-        email.sendKeys(user);
+        driver.findElement(By.xpath(ENTER_MAIL_XPATH)).sendKeys(user);
         driver.findElement(By.xpath(BUTTON_CONTINUE_XPATH)).click();
-        WebElement newPassword = driver.findElement(By.xpath(ENTER_NEW_PASSWORD_XPATH));
-        newPassword.click();
-        newPassword.sendKeys(password);
-        WebElement confirmPassword = driver.findElement(By.xpath(ENTER_CONFIRM_PASSWORD_XPATH));
-        confirmPassword.click();
-        confirmPassword.sendKeys(password);
+        driver.findElement(By.xpath(ENTER_NEW_PASSWORD_XPATH)).sendKeys(password);
+        driver.findElement(By.xpath(ENTER_CONFIRM_PASSWORD_XPATH)).sendKeys(password);
         driver.findElement(By.xpath(BUTTON_CREATE_ACCOUNT_XPATH)).click();
         try {
             Thread.sleep(1500);
@@ -59,13 +53,9 @@ public class BookingRegisterPage {
     public void login(String user, String password) {
         driver.get("https://booking.com");
         driver.findElement(By.xpath(BUTTON_LOGIN_XPATH)).click();
-        WebElement email = driver.findElement(By.xpath(ENTER_MAIL_XPATH));
-        email.click();
-        email.sendKeys(user);
+        driver.findElement(By.xpath(ENTER_MAIL_XPATH)).sendKeys(user);
         driver.findElement(By.xpath(BUTTON_CONTINUE_XPATH)).click();
-        WebElement newPassword = driver.findElement(By.xpath(ENTER_PASSWORD_XPATH));
-        newPassword.click();
-        newPassword.sendKeys(password);
+        driver.findElement(By.xpath(ENTER_PASSWORD_XPATH)).sendKeys(password);
         driver.findElement(By.xpath(BUTTON_ENTER_XPATH)).click();
         LOGGER.info("Login successful");
     }

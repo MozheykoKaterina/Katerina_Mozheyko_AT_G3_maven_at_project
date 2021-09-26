@@ -5,38 +5,42 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 import pages.*;
-import utils.JSONUserBooking;
+import utils.UserForBooking;
 
 public class BookingFavoritesTest {
     
     private TrashmailPage trashMailPage = new TrashmailPage();
-    private MailPage mailPage = new MailPage();
+    private MailRuPage mailPageRu = new MailRuPage();
     private BookingRegisterPage bookingRegisterPage = new BookingRegisterPage();
     private BookingTravelPage bookingTravelPage = new BookingTravelPage();
     private BookingHotelPage bookingSaveFavoritesPage = new BookingHotelPage();
-    private JSONUserBooking jsonUserBooking = new JSONUserBooking();
+    private UserForBooking userForBooking = new UserForBooking();
+    private String loginMailRu = userForBooking.getLoginPassword("login");
+    private String passwordMailRu = userForBooking.getLoginPassword("password");
+    private String passwordForBooking = userForBooking.getLoginPassword("passwordforbooking");
+    private String loginTranshmail;
     
     @Test
     public void registerTrashMail() {
-        trashMailPage.getLoginTrashmail(jsonUserBooking.parseLogin());
-        String emailTranshmail = mailPage.confirmRegister(jsonUserBooking.parseLogin(), jsonUserBooking.parsePassword(),MailPage.TRASHMAIL);
-        Assert.assertEquals("Created user for booking ", trashMailPage.getLogin(), emailTranshmail);
+        String loginTranshmail = trashMailPage.createLoginTrashmail(loginMailRu);
+        String loginConfirmMailRu = mailPageRu.confirmRegister(loginMailRu, passwordMailRu, "booking");
+        Assert.assertEquals("Created user for booking ", loginConfirmMailRu, loginTranshmail);
     }
     
     @Test
     public void registerBooking() {
-        bookingRegisterPage.register(trashMailPage.getLogin(), jsonUserBooking.parsePasswordForBooking());
-        String confirm = mailPage.confirmRegister(jsonUserBooking.parseLogin(), jsonUserBooking.parsePassword(), MailPage.BOOKING);
-        Assert.assertEquals("Confirmed successfully ", "Подтверждаю", confirm);
+        //bookingRegisterPage.register(loginTranshmail, passwordForBooking);
+        String confirm = mailPageRu.confirmRegister(loginMailRu, passwordMailRu, "booking");
+        Assert.assertEquals("Confirmed successfully ", "Email confirmed", confirm);
     }
     
     @Test
     public void checkFavorites() {
-        bookingRegisterPage.login("award@my10minutemail.com", jsonUserBooking.parsePasswordForBooking());
+        bookingRegisterPage.login("award@my10minutemail.com", passwordForBooking);
         bookingTravelPage.directionOfTravel("Мадрид");
         bookingTravelPage.setDateFromTo(10, 15);
-        bookingTravelPage.search();
-        int count = bookingSaveFavoritesPage.saveFavorites();
+        bookingTravelPage.startSearch();
+        int count = bookingSaveFavoritesPage.getCountSaveFavorites();
         Assert.assertEquals("CountFavorites ", count, 2);
     }
     

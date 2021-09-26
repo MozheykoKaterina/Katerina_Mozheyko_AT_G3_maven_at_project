@@ -12,8 +12,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
-    
-    
 
     public static WebDriver getDriver(Config config)  {
         ChromeOptions options = new ChromeOptions();

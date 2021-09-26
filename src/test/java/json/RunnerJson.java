@@ -1,7 +1,4 @@
-package recipe;
-
-import recipe.GSONParser;
-import recipe.JsonParser;
+package json;
 
 import java.io.IOException;
 

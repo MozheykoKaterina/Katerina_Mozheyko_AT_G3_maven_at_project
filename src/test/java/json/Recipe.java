@@ -1,6 +1,4 @@
-package recipe;
-
-import recipe.Ingredient;
+package json;
 
 import java.util.List;
 

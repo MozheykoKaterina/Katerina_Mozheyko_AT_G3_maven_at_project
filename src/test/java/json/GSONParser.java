@@ -1,4 +1,4 @@
-package recipe;
+package json;
 
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.stream.JsonReader;

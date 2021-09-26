@@ -1,4 +1,4 @@
-package recipe;
+package json;
 
 import org.json.JSONObject;
 
