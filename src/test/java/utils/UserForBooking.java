@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 public class UserForBooking {
     
-    private static final String GET_USER_LOGIN = "src/test/resources/user.json";
+    private static final String GET_USER_LOGIN = "src/test/resources/logon.json";
     private static final Logger LOGGER =
             LogManager.getLogger(UserForBooking.class.getName());
     
