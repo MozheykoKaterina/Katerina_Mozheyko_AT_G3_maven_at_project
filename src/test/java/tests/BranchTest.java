@@ -18,4 +18,9 @@ public class BranchTest {
     public void test3() {
         System.out.println("33333");
     }
+
+    @Test
+    public void test4() {
+        System.out.println("44444");
+    }
 }
